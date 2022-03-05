@@ -1,0 +1,17 @@
+.popupInner {
+  position: absolute;
+  @include respond-above(xs) {
+    width: 343px;
+    top: 50%;
+    right: 415px;
+    transform: translateY(-50.1%);
+  }
+  @include respond-below(sm) {
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+  }
+}

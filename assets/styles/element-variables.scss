@@ -1,0 +1,82 @@
+/* theme color */
+$--color-primary: #25c9d0;
+$--color-success: #39d279;
+$--color-warning: #f5a623;
+$--color-danger: #da5656;
+$--color-info: $color-text-primary;
+
+$--color-white: $color-white;
+$--color-black: $color-black;
+
+$--background-color-base: $background-color-base;
+$--background-color-white: $background-color-white;
+
+$--box-shadow-light: (0 1px 5px 0.5px rgba(0, 0, 0, 0.1), 0 0.5px 2.5px 0 rgba(0, 0, 0, 0.2));
+
+$--color-text-primary: $color-text-primary;
+$--color-text-secondary: #a2a2a2;
+$--color-text-regular: $color-text;
+$--color-text-placeholder: $color-text-placeholder;
+
+$--border-color-base: $border-color-base;
+$--border-color-hover: $border-color-base;
+$--border-color-light: $border-color-light;
+$--border-color-lighter: $border-color-lighter;
+$--border-color-extra-light: $border-color-extra-light;
+$--border-radius-base: $border-radius-base;
+
+$--link-color: $color-link;
+$--link-color-hover: $color-link-hover;
+
+$--font-weight-primary: $font-weight-primary;
+
+/* input */
+$--input-focus-border: $border-color-base;
+$--input-border-color-hover: $border-color-base;
+$--input-background-color: $color-light-gray;
+$--input-disabled-color: #a9a9a9;
+$--input-font-size: $font-size-medium;
+
+/* button */
+$--button-border-radius: 3px;
+$--button-primary-border-color: $border-button-base;
+
+$--button-default-border-color: $border-button-base;
+$--button-default-background-color: $color-light-gray;
+$--button-default-font-color: $color-text-primary;
+
+$--button-success-border-color: $border-button-base;
+
+$--button-warning-border-color: $border-button-base;
+
+$--button-danger-border-color: rgba(0, 0, 0, 0.1);
+
+$--button-info-border-color: $border-button-base;
+$--button-info-background-color: $color-gray;
+$--button-info-font-color: $color-text;
+
+$--radio-button-checked-border-color: rgba(0, 0, 0, 0.15);
+
+/* card */
+$--card-border-color: $color-white;
+
+/* alert */
+$--alert-padding: 8px 12px;
+$--alert-title-font-size: $font-size-base;
+$--alert-description-font-size: 13px;
+
+/* dropdown */
+$--dropdown-menu-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+$--dropdown-menuItem-hover-fill: #f5f5f5; /* stylelint-disable-line */
+$--dropdown-menuItem-hover-color: #333; /* stylelint-disable-line */
+
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import '~element-ui/packages/theme-chalk/src/index';
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  theme: $--color-primary;
+}

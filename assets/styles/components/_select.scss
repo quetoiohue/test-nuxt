@@ -1,0 +1,22 @@
+.ol-select {
+  padding: 7px 20px 7px 7px;
+  text-indent: 0.01px;
+  min-height: 40px;
+  // background: $color-light-gray url(~@staticRoot/site/img/arrow_drop_down.png) no-repeat;
+  background-position: calc(100% - 1px) center;
+  background-size: 22px 22px;
+  color: $color-text-primary;
+  height: auto;
+  width: 100%;
+  font-size: $font-size-medium;
+  line-height: $line-height-base;
+  border-color: $border-color-base;
+  border-radius: 2px;
+  appearance: none;
+  box-shadow: none;
+  option {
+    &:disabled {
+      color: $color-text-lighter;
+    }
+  }
+}

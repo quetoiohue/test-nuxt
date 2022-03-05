@@ -1,0 +1,31 @@
+:root {
+  --text-font-stack: 'Open Sans', 'Arial', sans-serif;
+  @include defineColorHSL(--color-primary, #25c9d0);
+  @include defineColorHSL(--color-success, #39d279);
+  @include defineColorHSL(--color-warning, #f5a623);
+  @include defineColorHSL(--color-danger, #da5656);
+  @include defineColorHSL(--color-text-secondary, #a2a2a2);
+  @include defineColorHSL(--color-text-lighter, #a9a9a9);
+  @include defineColorHSL(--color-darker-gray, #999);
+  @include defineColorHSL(--color-link, #0bb4ba);
+  @include defineColorHSL(--color-japonica, #dd7373);
+  @include defineColorHSL(--color-cupid, #fac4c4);
+}
+
+.smashfly-mode {
+  --text-font-stack: 'Source Sans Pro', sans-serif;
+  @include defineColorHSL(--color-primary, #0381ac);
+}
+
+.contrast-mode {
+  @include defineColorHSL(--color-primary, #26828e);
+  @include defineColorHSL(--color-success, #398557);
+  @include defineColorHSL(--color-warning, #ae650b);
+  @include defineColorHSL(--color-danger, #d14642);
+  @include defineColorHSL(--color-text-secondary, #797676);
+  @include defineColorHSL(--color-text-lighter, #757575);
+  @include defineColorHSL(--color-darker-gray, #444);
+  @include defineColorHSL(--color-link, #2e8186);
+  @include defineColorHSL(--color-japonica, #c14f48);
+  @include defineColorHSL(--color-cupid, #d47d7b);
+}

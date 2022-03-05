@@ -1,0 +1,103 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Regular font family
+$text-font-stack: var(--text-font-stack, ('Open Sans', 'Arial', sans-serif)) !default;
+$font-family-default: $text-font-stack !default;
+
+/* Color
+-------------------------- */
+$color-white: #fff !default;
+$color-black: #000 !default;
+$color-primary: var(--color-primary, #25c9d0) !default;
+$color-success: var(--color-success, #39d279) !default;
+$color-warning: var(--color-warning, #f5a623) !default;
+$color-danger: var(--color-danger, #da5656) !default;
+$color-bubble: #45d0d6 !default;
+
+$color-text: #444 !default;
+$color-text-primary: #555 !default;
+$color-text-secondary: var(--color-text-secondary, #a2a2a2) !default;
+$color-text-lighter: var(--color-text-lighter, #a9a9a9) !default;
+$color-text-placeholder: $color-text-lighter !default;
+$color-text-danger: rgba(232, 75, 75, 0.9) !default;
+
+$color-link: var(--color-link, #0bb4ba) !default;
+$color-link-hover: #2a80b0 !default;
+
+$color-gray: #dfe2e6 !default;
+$color-light-gray: #fafafa !default;
+$color-dark-gray: $color-text-secondary !default;
+$color-darker-gray: var(--color-darker-gray, #999) !default;
+$color-dark: #233d4d !default;
+$color-william: #395e66 !default;
+$color-electric-violet: #7549fa !default;
+$color-alto: #dbdbdb;
+$color-blue-dianne: #233d4d !default;
+$color-medium-purple: #7756da !default;
+$color-japonica: var(--color-japonica, #dd7373) !default;
+$color-matisse: #2360a7 !default;
+$color-cupid: var(--color-cupid, #fac4c4);
+
+$skeleton-color: #f2f2f2 !default;
+$skeleton-to-color: #e6e6e6 !default;
+
+$border-color-base: #cbced3 !default;
+$border-color-medium: #dadce0 !default;
+$border-color-light: #ededed !default;
+$border-color-lighter: #ebeef5 !default;
+$border-color-extra-light: #f2f6fc !default;
+$border-button-base: rgba(0, 0, 0, 0.15) !default;
+$border-color-box: #dadce0 !default;
+$border-color-bubble: #bdf4f2 !default;
+
+$border-radius-base: 2px !default;
+
+$background-color-base: #f7f7f7 !default;
+$background-color-white: $color-white !default;
+$background-hover: #f8f8f8 !default;
+$background-color-bubble: #f7ffff !default;
+
+/* Font
+  -------------------------- */
+$font-size-extra-large: 20px !default;
+$font-size-large: 18px !default;
+$font-size-medium: 16px !default;
+$font-size-base: 14px !default;
+$font-size-small: 12px !default;
+$font-size-extra-small: 10px !default;
+
+$font-size-h1: floor(($font-size-base * 2.6)) !default; // ~36px
+$font-size-h2: floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h3: ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h4: ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h5: $font-size-base !default;
+$font-size-h6: ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$font-weight-primary: 600 !default;
+$font-weight-bold: bold !default;
+
+$line-height-base: 1.428571429 !default; // 20/14
+$headings-line-height: 1.1 !default;
+$line-height-computed: floor(($font-size-base * $line-height-base)) !default;
+
+/* zIndex */
+$zindex-header: 1030;
+
+/* Break-point
+-------------------------- */
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1440px,
+);
+
+/* CONSTANT */
+$header-height: 64px !default;
+$toolbar-height: 48px !default;
+$mobile-toolbar-height: 56px !default;
+
+$container-width: 1120px !default;

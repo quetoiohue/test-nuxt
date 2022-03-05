@@ -1,0 +1,399 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+@import 'sizes';
+
+/* RESPOND ABOVE
+-------------------------- */ // @include respond-above(sm) {}
+@mixin respond-above($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+/*  RESPOND BELOW
+-------------------------- */
+// @include respond-below(sm) {}
+@mixin respond-below($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+/*  RESPOND BETWEEN
+-------------------------- */
+
+// @include respond-between(sm, md) {}
+@mixin respond-between($lower, $upper) {
+  // If both the lower and upper breakpoints exist in the map.
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    // Get the lower and upper breakpoints.
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+
+    // Write the media query.
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+
+    // If one or both of the breakpoints don't exist.
+  } @else {
+    // If lower breakpoint is invalid.
+    @if (map-has-key($breakpoints, $lower) == false) {
+      // Log a warning.
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+
+    // If upper breakpoint is invalid.
+    @if (map-has-key($breakpoints, $upper) == false) {
+      // Log a warning.
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+
+@mixin defineColorHSL($color-name, $hex) {
+  #{$color-name}: $hex;
+  #{$color-name}-h: #{hue($hex)};
+  #{$color-name}-s: #{saturation($hex)};
+  #{$color-name}-l: #{lightness($hex)};
+}
+
+@function var-lightness($color, $lightnessMultiplier) {
+  $color: str-replace($color, 'var(');
+  $color: str-replace($color, ')');
+  $color: str-replace($color, ',', $end: true);
+  $color-h: var(#{$color + '-h'});
+  $color-s: var(#{$color + '-s'});
+  $color-l: var(#{$color + '-l'});
+  @return hsl($color-h, $color-s, calc(#{$color-l} - #{$lightnessMultiplier}));
+}
+
+@function var-saturation($color, $saturationMultiplier) {
+  $color: str-replace($color, 'var(');
+  $color: str-replace($color, ')');
+  $color: str-replace($color, ',', $end: true);
+  $color-h: var(#{$color + '-h'});
+  $color-s: var(#{$color + '-s'});
+  $color-l: var(#{$color + '-l'});
+  @return hsl($color-h, calc(#{$color-s} - #{$saturationMultiplier}), $color-l);
+}
+
+@function var-alpha($color, $opacity) {
+  $color: str-replace($color, 'var(');
+  $color: str-replace($color, ')');
+  $color: str-replace($color, ',', $end: true);
+  $color-h: var(#{$color + '-h'});
+  $color-s: var(#{$color + '-s'});
+  $color-l: var(#{$color + '-l'});
+  @return hsla($color-h, $color-s, $color-l, $opacity);
+}
+
+@function str-replace($string, $search, $replace: '', $end: false) {
+  $index: str-index($string, $search);
+  $end-index: 0;
+  @if $index {
+    @if $end == true {
+      $end-index: str-length($string);
+      @return str-slice($string, 1, $index - 1) + $replace +
+        str-replace(str-slice($string, $index + $end-index), $search, $replace);
+    }
+
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@mixin IE() {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+@mixin Firefox() {
+  @-moz-document url-prefix() {
+    @content;
+  }
+}
+
+@mixin Mobile() {
+  @media only screen and (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+  $extmods: (
+    eot: '?',
+    svg: '#' + str-replace($name, ' ', '_'),
+  );
+  $formats: (
+    otf: 'opentype',
+    ttf: 'truetype',
+  );
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + '.' + $extmod)) format(quote($format)), comma);
+  }
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin back-btn-with-arrow($position: relative) {
+  position: $position;
+  background: $color-white;
+  border: solid 1px #dbdbdb;
+  color: $color-text;
+  display: inline-block;
+  border-radius: 2px;
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+  line-height: 1;
+  padding: em(8px) em(8px) em(8px) em(6px);
+  font-weight: $font-weight-primary;
+  min-width: 60px;
+  font-size: em($font-size-base);
+  > div:first-child {
+    left: -11px;
+    top: 4px;
+    position: absolute;
+    transform: scale(0.6, 1);
+    z-index: 0;
+    span {
+      display: block;
+      width: em(23px);
+      height: em(22px);
+      border: 2px solid #dbdbdb;
+      border-right: 0;
+      border-top: 0;
+      background: $color-white;
+      border-radius: 2px;
+      border-bottom-left-radius: 4px;
+      transform: rotate(46deg) scale(0.9, 0.9);
+    }
+    + span {
+      display: block;
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+  }
+}
+
+@mixin scrollbar($width: 5px, $border-radius: 5px) {
+  @include respond-above(xs) {
+    ::-webkit-scrollbar {
+      width: $width;
+      height: $width;
+    }
+
+    ::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: $border-radius;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    :hover {
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.15);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+
+  @include respond-below(sm) {
+    ::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: $border-radius;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    :hover {
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.5);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.6);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}
+
+@mixin form-element-error() {
+  .el-form-item__label {
+    color: $color-danger;
+  }
+
+  .el-form-item__error {
+    color: $color-text-danger;
+  }
+
+  .el-input__inner {
+    border-color: rgba(232, 75, 75, 0.5);
+    background: rgba(232, 75, 75, 0.05);
+    color: $color-text-primary;
+  }
+}
+
+@mixin message-bubble($background: #fafafa, $border-color: #e1e1e1, $sent: false) {
+  position: relative;
+  background: $background;
+  padding: 6px 10px;
+  border: 1px solid $border-color;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px;
+  }
+
+  &::before {
+    top: -1px;
+    z-index: 1;
+  }
+  &::after {
+    top: 0;
+    z-index: 2;
+  }
+
+  @if $sent {
+    border-radius: 8px 0 8px 8px;
+    &::before {
+      right: -8px;
+      border-color: $border-color;
+      border-bottom-color: rgba(0, 0, 0, 0);
+      border-right-color: rgba(0, 0, 0, 0);
+    }
+    &::after {
+      right: -6px;
+      border-color: $background;
+      border-bottom-color: rgba(0, 0, 0, 0);
+      border-right-color: rgba(0, 0, 0, 0);
+    }
+  } @else {
+    border-radius: 0 8px 8px;
+    &::before {
+      left: -8px;
+      border-color: $border-color;
+      border-bottom-color: rgba(0, 0, 0, 0);
+      border-left-color: rgba(0, 0, 0, 0);
+    }
+    &::after {
+      left: -6px;
+      border-color: $background;
+      border-bottom-color: rgba(0, 0, 0, 0);
+      border-left-color: rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+@mixin statement-arrow(
+  $primary: false,
+  $border-primary-color: #bdf4f2,
+  $background-primary-color: #f7ffff
+) {
+  text-align: center;
+  line-height: 38px;
+  width: 40px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  position: relative;
+  min-height: 38px;
+  font-size: $font-size-base;
+  color: $color-text-lighter;
+  border-right: none !important;
+  padding-left: 10px;
+  @if $primary {
+    background: $background-primary-color;
+    border: 1px solid $border-primary-color;
+  } @else {
+    background: $color-white;
+    border: 1px solid $border-color-box;
+  }
+  &::before,
+  &::after {
+    text-transform: uppercase;
+    position: absolute;
+    content: '';
+    left: 100%;
+    width: 0;
+    height: 0;
+    display: block;
+    border-style: solid;
+  }
+  &::after {
+    top: 0;
+    border-width: 19px;
+    @if $primary {
+      border-color: transparent transparent transparent $background-primary-color;
+    } @else {
+      border-color: transparent transparent transparent $color-white;
+    }
+  }
+  &::before {
+    top: -1px;
+    border-width: 20px;
+    @if $primary {
+      border-color: transparent transparent transparent $border-primary-color;
+    } @else {
+      border-color: transparent transparent transparent $border-color-box;
+    }
+  }
+}

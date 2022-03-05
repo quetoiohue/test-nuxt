@@ -1,0 +1,58 @@
+.datepicker {
+  :global(.flatpickr-calendar) :global {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    .flatpickr-months {
+      padding: 10px 20px 30px;
+      .flatpickr-prev-month,
+      .flatpickr-next-month {
+        top: 10px;
+      }
+      .cur-year,
+      .cur-month {
+        font-weight: normal;
+      }
+    }
+    .flatpickr-innerContainer {
+      .flatpickr-rContainer {
+        width: 100%;
+      }
+      .flatpickr-days {
+        width: inherit;
+      }
+      .dayContainer {
+        width: inherit;
+        min-width: inherit;
+        max-width: inherit;
+        .flatpickr-day {
+          flex-basis: 42px;
+          max-width: 42px;
+          height: 42px;
+          line-height: 42px;
+          flex-shrink: 0;
+          &.selected {
+            color: $color-text;
+            background: #efefef;
+            border-color: #efefef;
+          }
+          &.today:not(.selected) {
+            background: transparent;
+          }
+          .event {
+            content: '';
+            position: absolute;
+            bottom: 3px;
+            left: calc(50% - 1.5px);
+            width: 4px;
+            height: 4px;
+            display: block;
+            background: $color-william;
+            border-radius: 50%;
+            z-index: -1;
+          }
+        }
+      }
+    }
+  }
+}

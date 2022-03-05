@@ -1,0 +1,93 @@
+/**
+ * Basic typography style for copy text
+ */
+body {
+  color: $color-text-primary;
+  font: normal $font-size-base $text-font-stack;
+  line-height: $line-height-base;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: inherit;
+  font-weight: $font-weight-primary;
+  line-height: $headings-line-height;
+
+  small,
+  .small {
+    font-weight: 400;
+    line-height: 1;
+  }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  margin-top: $line-height-computed;
+  margin-bottom: math.div($line-height-computed, 2);
+
+  /* stylelint-disable */
+  small,
+  .small {
+    /* stylelint-enable */
+    font-size: 65%;
+  }
+}
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: math.div($line-height-computed, 2);
+  margin-bottom: math.div($line-height-computed, 2);
+
+  /* stylelint-disable */
+  small,
+  .small {
+    /* stylelint-enable */
+    font-size: 75%;
+  }
+}
+
+h1,
+.h1 {
+  font-size: $font-size-h1;
+}
+h2,
+.h2 {
+  font-size: $font-size-h2;
+}
+h3,
+.h3 {
+  font-size: $font-size-h3;
+}
+h4,
+.h4 {
+  font-size: $font-size-h4;
+}
+h5,
+.h5 {
+  font-size: $font-size-h5;
+}
+h6,
+.h6 {
+  font-size: $font-size-h6;
+}
+
+.font-weight-primary {
+  font-weight: $font-weight-primary;
+}

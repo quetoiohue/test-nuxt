@@ -1,0 +1,98 @@
+.empty {
+  // background: url(~@staticRoot/icons/sprite-icons3.png) no-repeat;
+  display: block;
+  background-size: math.div(838px, 3) math.div(504px, 3);
+  height: math.div(126px, 3);
+}
+.empty-alert {
+  width: math.div(154px, 3);
+  background-position: 0 0;
+}
+.empty-start-keywords,
+.empty-keywords,
+.empty-start-keyword,
+.empty-keyword {
+  width: math.div(173px, 3);
+  background-position: math.div(-154px, 3) 0;
+}
+.empty-start-keywords-pc,
+.empty-start-keyword-pc,
+.empty-keywords-pc,
+.empty-keyword-pc {
+  width: math.div(173px, 3);
+  background-position: math.div(-327px, 3) 0;
+}
+.empty-chat {
+  width: math.div(195px, 3);
+  background-position: 0 math.div(-126px, 3);
+}
+
+.empty-chat-pc {
+  width: math.div(195px, 3);
+  background-position: math.div(-195px, 3) math.div(-126px, 3);
+}
+.empty-groups,
+.empty-group {
+  width: math.div(214px, 3);
+  background-position: 0 math.div(-252px, 3);
+}
+.empty-groups-pc,
+.empty-group-pc {
+  width: math.div(214px, 3);
+  background-position: math.div(-214px, 3) math.div(-252px, 3);
+}
+.empty-jobs,
+.empty-job {
+  width: math.div(214px, 3);
+  background-position: 0 math.div(-252px, 3);
+}
+.empty-jobs-pc,
+.empty-job-pc {
+  width: math.div(214px, 3);
+  background-position: math.div(-214px, 3) math.div(-252px, 3);
+}
+.empty-contact,
+.empty-leads,
+.empty-lead {
+  width: math.div(234px, 3);
+  background-position: 0 math.div(-378px, 3);
+}
+.empty-contact-pc,
+.empty-leads-pc,
+.empty-lead-pc {
+  width: math.div(234px, 3);
+  background-position: math.div(-234px, 3) math.div(-378px, 3);
+}
+.empty-locations-list,
+.empty-locations,
+.empty-location {
+  width: math.div(146px, 3);
+  background-position: math.div(-393px, 3) math.div(-126px, 3);
+}
+.empty-locations-list-pc,
+.empty-locations-pc,
+.empty-location-pc {
+  width: math.div(146px, 3);
+  background-position: math.div(-502px, 3) 0;
+}
+.empty-sources,
+.empty-source {
+  width: math.div(234px, 3);
+  background-position: math.div(-428px, 3) math.div(-252px, 3);
+}
+.empty-sources-pc,
+.empty-source-pc {
+  width: math.div(234px, 3);
+  background-position: math.div(-468px, 3) math.div(-378px, 3);
+}
+.empty-star,
+.empty-referred-by {
+  width: math.div(136px, 3);
+  background-position: math.div(-645px, 3) px(math.div(0, 3));
+}
+
+.empty-star-pc,
+.empty-referred-by-pc {
+  width: math.div(136px, 3);
+  background-position: math.div(-645px, 3) px(math.div(0, 3));
+}

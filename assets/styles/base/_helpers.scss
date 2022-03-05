@@ -1,0 +1,240 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+/**
+ * Clear inner floats
+ */
+.clearfix::after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+/**
+ * Hide text while making it readable for screen readers
+ * 1. Needed in WebKit-based browsers because of an implementation bug;
+ *    See: https://code.google.com/p/chromium/issues/detail?id=457146
+ */
+.hide-text {
+  overflow: hidden;
+  padding: 0; /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+/**
+ * Hide element while making it readable for screen readers
+ * Shamelessly borrowed from HTML5Boilerplate:
+ * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
+ */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+div:focus {
+  outline: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.non-clickable {
+  pointer-events: none;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.bg-light {
+  background-color: $background-color-base;
+}
+.bg-white {
+  background-color: $color-white !important;
+}
+
+.color-primary {
+  color: $color-primary !important;
+}
+.color-success {
+  color: $color-success !important;
+}
+.color-warning {
+  color: $color-warning !important;
+}
+.color-danger {
+  color: $color-danger !important;
+}
+.color-medium-purple {
+  color: $color-medium-purple !important;
+}
+.color-lighter {
+  color: $color-text-lighter !important;
+}
+.color-alto {
+  color: $color-alto !important;
+}
+
+.font-extra-small {
+  font-size: $font-size-extra-small !important;
+  line-height: normal;
+}
+.font-small {
+  font-size: $font-size-small !important;
+  line-height: normal;
+}
+.font-medium {
+  font-size: $font-size-medium !important;
+}
+.font-large {
+  font-size: $font-size-large !important;
+}
+.font-extra-large {
+  font-size: $font-size-extra-large !important;
+}
+
+.text-overflow {
+  @include text-overflow;
+}
+
+.icon {
+  &-extra-lg {
+    font-size: 32px;
+  }
+  &-lg {
+    font-size: 24px;
+  }
+  &-md {
+    font-size: $font-size-extra-large;
+  }
+}
+
+.scrollable {
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch !important;
+  &.scrollable.only-x {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+  &.only-y {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  @include scrollbar();
+}
+
+.margin-right__0 {
+  margin-right: 0;
+}
+
+.margin-right__10 {
+  margin-right: 10px;
+}
+
+.popper-none-padding {
+  padding: 0;
+  border: none;
+}
+
+.highlight-token {
+  color: $color-primary;
+  font-weight: $font-weight-primary;
+}
+
+.popper-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid $border-color-base;
+}
+
+.ol-dialog {
+  border-radius: 10px;
+}
+
+.ol-confirm {
+  border-radius: 10px;
+  padding-bottom: 0;
+  width: 480px;
+  .el-message-box__header {
+    border-bottom: 1px solid $border-color-light;
+    padding: 18px 32px;
+    .el-message-box__title {
+      font-size: $font-size-medium;
+      font-weight: $font-weight-primary;
+      .el-message-box__status {
+        margin-top: 0;
+      }
+    }
+  }
+  .el-message-box__content {
+    padding: 24px 32px;
+  }
+  .el-message-box__btns {
+    border-top: 1px solid $border-color-light;
+    padding: 10px;
+  }
+  .el-button--danger {
+    &:hover,
+    &:focus {
+      background-color: #d54141;
+      color: $color-white;
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.not-allowed {
+  cursor: not-allowed !important;
+}

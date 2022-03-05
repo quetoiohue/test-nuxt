@@ -1,0 +1,99 @@
+@function pc($px: $line-height-base, $font-size: $font-size-base) {
+  @return convert($px, '%', $font-size);
+}
+
+@function em($px: $line-height-base, $font-size: $font-size-base) {
+  @return convert($px, 'em', $font-size);
+}
+
+@function rem($px: $line-height-base, $font-size: $font-size-base) {
+  @return convert($px, 'rem', $font-size);
+}
+
+/* stylelint-disable */
+@function convert($value, $convertUnit, $convertBase: $font-size-base) {
+  $currentUnit: unit($value);
+  $strippedValue: math.div($value, ($value * 0 + 1));
+  @if not unitless($convertBase) {
+    @if unit($convertBase) != 'px' {
+      @error "Not supported unit '#{unit($convertBase)}' as convert base!";
+    }
+    $convertBase: math.div($convertBase, ($convertBase * 0 + 1));
+  }
+
+  @if $currentUnit == 'px' {
+    @if $convertUnit == 'em' {
+      @return 0em + decimal-ceil(math.div($strippedValue, $convertBase), 3);
+    } @else if $convertUnit == 'rem' {
+      @return 0rem + decimal-ceil(math.div($strippedValue, $convertBase), 3);
+    } @else if $convertUnit == '%' {
+      @return percentage(math.div($strippedValue, $convertBase));
+    }
+  } @else if $currentUnit == 'em' {
+    @if $convertUnit == 'px' {
+      @return 0px + decimal-ceil($strippedValue * $convertBase, 3);
+    } @else if $convertUnit == '%' {
+      @return percentage($strippedValue);
+    }
+  } @else if $currentUnit == '%' {
+    @if $convertUnit == 'px' {
+      @return 0em + decimal-ceil(math.div($strippedValue * $convertBase, 100), 3);
+    } @else if $convertUnit == 'em' {
+      @return 0em + decimal-ceil(math.div($strippedValue, 100), 3);
+    } @else if $convertUnit == 'rem' {
+      @return 0rem + decimal-ceil(math.div($strippedValue, 100), 3);
+    }
+  }
+  // TODO: Check for pt unit convert
+  @else if $currentUnit == 'pt' {
+    @if $convertUnit == 'px' {
+      @return 0px + round($strippedValue * 1.3333);
+    } @else if $convertUnit == 'em' {
+      @return 0em + decimal-ceil(math.div($strippedValue, 12), 3);
+    } @else if $convertUnit == 'rem' {
+      @return 0rem + decimal-ceil(math.div($strippedValue, 12), 3);
+    } @else if $convertUnit == '%' {
+      @return percentage(math.div($strippedValue, 12));
+    }
+  }
+  @error "Can't convert '#{$value}' to unit '#{$convertUnit}'!";
+}
+/* stylelint-enable */
+
+@function decimal-round($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return math.div(round($number * $n), $n);
+  } @else if $mode == ceil {
+    @return math.div(ceil($number * $n), $n);
+  } @else if $mode == floor {
+    @return math.div(floor($number * $n), $n);
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+@function decimal-ceil($number, $digits: 0) {
+  @return decimal-round($number, $digits, ceil);
+}
+
+@function decimal-floor($number, $digits: 0) {
+  @return decimal-round($number, $digits, floor);
+}

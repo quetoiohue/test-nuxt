@@ -1,0 +1,93 @@
+@import 'normalize';
+@import 'element-ui';
+@import 'base/base', 'base/fonts', 'base/typography', 'base/helpers', 'base/print';
+@import 'transitions';
+@import 'components/button', 'components/select', 'components/empty', 'components/toast',
+  'components/table', 'components/loaders';
+@import 'themes';
+
+* {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  @include IE {
+    min-height: 100vh;
+  }
+}
+
+body {
+  &.has-toolbar {
+    padding-top: $toolbar-height;
+    @include respond-below(sm) {
+      padding-top: $mobile-toolbar-height;
+    }
+  }
+  &.has-fixed-header {
+    padding-top: $header-height;
+    &.has-toolbar {
+      $header-toolbar-height: $header-height + $toolbar-height;
+
+      padding-top: $header-toolbar-height;
+      @include respond-below(sm) {
+        $header-toolbar-height: $header-height + $mobile-toolbar-height;
+
+        padding-top: $header-toolbar-height;
+      }
+    }
+  }
+  &.has-toolbar,
+  &.has-fixed-header {
+    flex: 1 0 auto;
+  }
+}
+
+#__oliviaApp,
+#__layout,
+.app-wrapper,
+.body-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  flex: 1 0 auto;
+}
+
+.container,
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  width: 100%;
+}
+
+.container {
+  @include respond-above(lg) {
+    width: $container-width;
+  }
+
+  @include respond-below(lg) {
+    width: 100%;
+    min-width: 320px;
+  }
+}
+
+.nuxt-progress {
+  background-color: $color-primary;
+  &-failed {
+    background-color: $color-danger;
+  }
+}
+
+.body-wrapper {
+  @include respond-above(xs) {
+    padding: 15px 0;
+  }
+}

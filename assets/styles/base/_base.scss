@@ -1,0 +1,65 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+html,
+body {
+  position: relative;
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@include scrollbar();
+
+:focus {
+  outline: none;
+}
+
+a {
+  color: $color-link;
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+a:focus,
+a:active {
+  outline: none;
+  color: $color-link-hover;
+}
+
+/* stylelint-disable-next-line */
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+::selection {
+  color: $color-white;
+  text-shadow: none;
+  background: $color-primary;
+}
+
+[placeholder] {
+  text-overflow: ellipsis;
+}
+
+pre {
+  border-radius: 2px;
+  background: $color-light-gray;
+  margin: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+p {
+  margin-bottom: 10px;
+}

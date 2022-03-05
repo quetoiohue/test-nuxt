@@ -1,0 +1,26 @@
+.row-has-checkbox {
+  td {
+    &:first-of-type {
+      border-bottom: none;
+      .cell {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+.header-row-has-checkbox {
+  th {
+    &:first-of-type {
+      border-bottom: none;
+      .cell {
+        display: none;
+      }
+    }
+  }
+}
+.el-table--enable-row-hover .el-table__body tr.row-has-checkbox:hover > td {
+  &:first-of-type {
+    background-color: transparent;
+  }
+}
