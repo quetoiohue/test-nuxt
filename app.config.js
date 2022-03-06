@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development'
-const APP_TITLE = 'Custom theme ElementUI'
+const APP_TITLE = process.env.APP_TITLE || 'test-nuxt'
 
 module.exports = {
   isDev,
