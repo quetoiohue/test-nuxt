@@ -4,7 +4,7 @@
     class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0"
   >
     <el-row>
-      <el-button>Default</el-button>
+      <el-button>Default Button</el-button>
       <el-button type="primary">Primary</el-button>
       <el-button type="success">Success</el-button>
       <el-button type="info">Info</el-button>
