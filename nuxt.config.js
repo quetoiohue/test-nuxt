@@ -104,14 +104,6 @@ export default {
       cache: true,
     },
 
-    hotMiddleware: {
-      client: {
-        path: `${appConfig.staticUrl}/__webpack_hmr/client`,
-      },
-    },
-
-    publicPath: appConfig.staticUrl,
-
     loaders: {
       cssModules: {
         modules: {
